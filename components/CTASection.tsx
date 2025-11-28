@@ -25,7 +25,7 @@ const CTASection: React.FC = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-          Ready to Transform Your Formwork Logistics?
+          Transform Your Formwork Logistics?
         </h2>
         <p className="text-lg text-blue-100 mb-10 max-w-2xl mx-auto">
           Join the first ecosystem platform anchored in Singapore setting global standards. 

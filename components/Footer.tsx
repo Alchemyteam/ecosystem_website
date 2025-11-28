@@ -17,20 +17,20 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-white font-semibold mb-4">Platform</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#how" className="hover:text-white transition-colors">How it works</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="#glossary" className="hover:text-white transition-colors">Glossary</a></li>
-            </ul>
-          </div>
-
-          <div>
             <h4 className="text-white font-semibold mb-4">POC</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="#roadmap" className="hover:text-white transition-colors">Roadmap</a></li>
               <li><a href="#impact" className="hover:text-white transition-colors">Impact</a></li>
               <li><a href="#tech" className="hover:text-white transition-colors">TechStack</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Platform</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#how" className="hover:text-white transition-colors">How it works</a></li>
+              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#glossary" className="hover:text-white transition-colors">Glossary</a></li>
             </ul>
           </div>
 

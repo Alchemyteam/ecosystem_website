@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-100 text-xs font-semibold tracking-wide uppercase mb-6">
               <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-              Formwork Ecosystem Platform
+              Ecosystem Platform
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a 
-                href="#join"
+                href="#contact"
                 className="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-lg transition-all shadow-xl shadow-brand-500/30 flex items-center justify-center gap-2"
               >
                 Join the Ecosystem <ArrowRight className="w-5 h-5" />

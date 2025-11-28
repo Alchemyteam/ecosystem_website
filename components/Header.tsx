@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown, Search as SearchIcon } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPlatformOpenMobile, setIsPlatformOpenMobile] = useState(false);
   const [isPOCOpenMobile, setIsPOCOpenMobile] = useState(false);
+  const [isPlatformOpenDesktop, setIsPlatformOpenDesktop] = useState(false);
+  const [isPOCOpenDesktop, setIsPOCOpenDesktop] = useState(false);
+  const platformCloseTimer = useRef<number | null>(null);
+  const pocCloseTimer = useRef<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchCloseTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +20,20 @@ const Header: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (platformCloseTimer.current) {
+        clearTimeout(platformCloseTimer.current);
+      }
+      if (pocCloseTimer.current) {
+        clearTimeout(pocCloseTimer.current);
+      }
+      if (searchCloseTimer.current) {
+        clearTimeout(searchCloseTimer.current);
+      }
+    };
   }, []);
 
   return (
@@ -33,27 +54,134 @@ const Header: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <div className="relative group">
-            <div className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-brand-600 cursor-pointer">
-              <span>Platform</span>
-              <ChevronDown className="w-4 h-4" />
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              if (searchCloseTimer.current) clearTimeout(searchCloseTimer.current);
+              setIsSearchFocused(true);
+            }}
+            onMouseLeave={() => {
+              searchCloseTimer.current = window.setTimeout(() => {
+                setIsSearchFocused(false);
+              }, 180);
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <SearchIcon className="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => {
+                    searchCloseTimer.current = window.setTimeout(() => {
+                      setIsSearchFocused(false);
+                    }, 150);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      const q = searchQuery.trim().toLowerCase();
+                      const idx = [
+                        { label: 'Modules', href: '#modules' },
+                        { label: 'Roadmap', href: '#roadmap' },
+                        { label: 'Impact', href: '#impact' },
+                        { label: 'TechStack', href: '#tech' },
+                        { label: 'Investor', href: '#investor' },
+                        { label: 'Buyer', href: '#buyer' },
+                        { label: 'Seller', href: '#seller' },
+                        { label: 'How it works', href: '#how' },
+                        { label: 'FAQ', href: '#faq' },
+                        { label: 'Glossary', href: '#glossary' }
+                      ];
+                      const match = idx.find(i => i.label.toLowerCase().includes(q));
+                      if (match) {
+                        window.location.hash = match.href;
+                        setIsSearchFocused(false);
+                      }
+                    }
+                  }}
+                  className="w-44 pl-7 pr-2 py-1.5 text-sm rounded-md border border-slate-200 focus:outline-none focus:border-brand-500 bg-white text-slate-700"
+                  placeholder="Search"
+                />
+              </div>
             </div>
-            <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
-              <a href="#how" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">How it works</a>
-              <a href="#faq" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">FAQ</a>
-              <a href="#glossary" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Glossary</a>
+            <div
+              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${
+                isSearchFocused && searchQuery.trim() ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              {[
+                { label: 'Modules', href: '#modules' },
+                { label: 'Roadmap', href: '#roadmap' },
+                { label: 'Impact', href: '#impact' },
+                { label: 'TechStack', href: '#tech' },
+                { label: 'Investor', href: '#investor' },
+                { label: 'Buyer', href: '#buyer' },
+                { label: 'Seller', href: '#seller' },
+                { label: 'How it works', href: '#how' },
+                { label: 'FAQ', href: '#faq' },
+                { label: 'Glossary', href: '#glossary' }
+              ]
+                .filter(i => i.label.toLowerCase().includes(searchQuery.trim().toLowerCase()))
+                .map(i => (
+                  <a key={i.href} href={i.href} className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">
+                    {i.label}
+                  </a>
+                ))}
             </div>
           </div>
 
-          <div className="relative group">
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              if (pocCloseTimer.current) clearTimeout(pocCloseTimer.current);
+              setIsPOCOpenDesktop(true);
+            }}
+            onMouseLeave={() => {
+              pocCloseTimer.current = window.setTimeout(() => {
+                setIsPOCOpenDesktop(false);
+              }, 180);
+            }}
+          >
             <div className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-brand-600 cursor-pointer">
               <span>POC</span>
               <ChevronDown className="w-4 h-4" />
             </div>
-            <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
+            <div
+              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${
+                isPOCOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+              }`}
+            >
               <a href="#roadmap" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Roadmap</a>
               <a href="#impact" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Impact</a>
               <a href="#tech" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">TechStack</a>
+            </div>
+          </div>
+
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              if (platformCloseTimer.current) clearTimeout(platformCloseTimer.current);
+              setIsPlatformOpenDesktop(true);
+            }}
+            onMouseLeave={() => {
+              platformCloseTimer.current = window.setTimeout(() => {
+                setIsPlatformOpenDesktop(false);
+              }, 180);
+            }}
+          >
+            <div className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-brand-600 cursor-pointer">
+              <span>Platform</span>
+              <ChevronDown className="w-4 h-4" />
+            </div>
+            <div
+              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${
+                isPlatformOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              <a href="#how" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">How it works</a>
+              <a href="#faq" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">FAQ</a>
+              <a href="#glossary" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Glossary</a>
             </div>
           </div>
 
@@ -62,10 +190,10 @@ const Header: React.FC = () => {
           <a href="#seller" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">seller</a>
 
           <a 
-            href="#join"
+            href="#contact"
             className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50"
           >
-            Get Early Access
+            Contact us
           </a>
         </nav>
 
@@ -120,11 +248,11 @@ const Header: React.FC = () => {
           <a href="#seller" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>seller</a>
 
           <a 
-            href="#join"
+            href="#contact"
             className="bg-brand-600 text-white px-4 py-3 rounded-lg text-center font-medium"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Get Early Access
+            Contact us
           </a>
         </div>
       )}

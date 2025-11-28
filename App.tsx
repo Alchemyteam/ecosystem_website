@@ -5,7 +5,11 @@ import Features from './components/Features';
 import Roadmap from './components/Roadmap';
 import Metrics from './components/Metrics';
 import TechStack from './components/TechStack';
-import CTASection from './components/CTASection';
+import Contact from './components/Contact';
+import Investor from './components/Investor';
+import HowItWorks from './components/HowItWorks';
+import FAQ from './components/FAQ';
+import Glossary from './components/Glossary';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -18,7 +22,11 @@ const App: React.FC = () => {
         <Roadmap />
         <Metrics />
         <TechStack />
-        <CTASection />
+        <HowItWorks />
+        <FAQ />
+        <Glossary />
+        <Investor />
+        <Contact />
       </main>
       <Footer />
     </div>
