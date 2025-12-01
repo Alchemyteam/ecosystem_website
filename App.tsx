@@ -7,6 +7,7 @@ import Metrics from './components/Metrics';
 import TechStack from './components/TechStack';
 import Contact from './components/Contact';
 import Investor from './components/Investor';
+import Sector from './components/sector';
 import HowItWorks from './components/HowItWorks';
 import FAQ from './components/FAQ';
 import Glossary from './components/Glossary';
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <FAQ />
         <Glossary />
         <Investor />
+        <Sector />
         <Contact />
       </main>
       <Footer />

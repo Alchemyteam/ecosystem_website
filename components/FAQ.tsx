@@ -10,7 +10,7 @@ const FAQ: React.FC = () => {
 
   return (
     <section id="faq" className="py-20 bg-slate-50 border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-24">
+      <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
           <p className="mt-4 text-slate-600 max-w-2xl mx-auto">Find the answers to your questions.</p>

@@ -185,9 +185,8 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          <a href="#investor" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">investor</a>
-          <a href="#buyer" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">buyer</a>
-          <a href="#seller" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">seller</a>
+          <a href="#investor" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Investor</a>
+          <a href="#sector" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Sector</a>
 
           <a 
             href="#contact"
@@ -243,9 +242,8 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <a href="#investor" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>investor</a>
-          <a href="#buyer" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>buyer</a>
-          <a href="#seller" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>seller</a>
+          <a href="#investor" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Investor</a>
+          <a href="#sector" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Sector</a>
 
           <a 
             href="#contact"

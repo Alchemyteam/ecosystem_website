@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
               <span className="font-bold text-xl">X</span>
             </div>
             <p className="max-w-sm text-sm leading-relaxed mb-6">
-              The first ecosystem platform for the formwork sector. 
+              The first ecosystem platform for the cross-sector. 
               Connecting buyers, sellers, and PEs to drive efficiency, compliance, and liquidity.
             </p>
           </div>
@@ -35,11 +35,13 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Role</h4>
+            <a href="#investor" className="text-white font-semibold mb-4 inline-block">Investor</a>
             <ul className="space-y-2 text-sm">
-              <li><a href="#investor" className="hover:text-white transition-colors">Investor</a></li>
-              <li><a href="#buyer" className="hover:text-white transition-colors">Buyer</a></li>
-              <li><a href="#seller" className="hover:text-white transition-colors">Seller</a></li>
+              <li><a href="#investor" className="hover:text-white transition-colors"></a></li>
+            </ul>
+            <a href="#sector" className="text-white font-semibold mb-4 mt-6 inline-block">Sector</a>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#sector" className="hover:text-white transition-colors"></a></li>
             </ul>
           </div>
 

@@ -34,8 +34,25 @@ const Contact: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="text-center lg:text-left">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Contact us</h2>
-            <p className="text-lg text-blue-100 mb-10 max-w-2xl">Join the first ecosystem platform anchored in Singapore setting global standards. Secure your spot for Phase 1 MVP access today.</p>
-            <p className="mt-6 text-sm text-blue-300">Limited spots available for early adopters. Priority given to regional infrastructure players.</p>
+            <h3 className="text-2xl font-semibold text-white mb-3">Secure Your Phase 1 MVP Access</h3>
+            <p className="text-lg text-blue-100">Join the first ecosystem platform anchored in Singapore setting global standards.</p>
+            {/* <p className="text-lg text-blue-100 mb-10 max-w-2xl">
+              Join the first ecosystem platform anchored in Singapore setting global standards. 
+              Secure your spot for Phase 1 MVP access today.
+            </p> */}
+            <p className="mt-6 text-sm text-blue-300">
+               Limited spots available for early adopters.<br></br>
+               Priority given to regional infrastructure players.
+            </p>
+            
+            <h3 className="mt-6 text-2xl font-semibold text-white">We're Here to Help</h3>
+            <p className="text-lg text-blue-100">
+              Your questions, feedbacks, and collaboration proposals are Welcome.
+            </p>
+            <p className="text-sm text-blue-300"> 
+              Unable to find the information you are looking for or have something you wish to ask us?<br></br>
+              Simply fill in this form below and we will get back to you shortly!
+            </p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 shadow-xl border border-slate-200">
@@ -52,7 +69,7 @@ const Contact: React.FC = () => {
                 <input value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">Company name *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Company *</label>
                 <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div>
@@ -60,12 +77,18 @@ const Contact: React.FC = () => {
                 <select value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required>
                   <option value="">Select</option>
                   <option>Singapore</option>
-                  <option>India</option>
-                  <option>Indonesia</option>
                   <option>Malaysia</option>
-                  <option>Thailand</option>
+                  <option>Indonesia</option>
+                  <option>Myanmar</option>
                   <option>Vietnam</option>
+                  <option>Kazakhstan</option>
+                  <option>Brunei</option>
+                  <option>Cambodia</option>
+                  <option>Laos</option>
                   <option>Philippines</option>
+                  <option>Thailand</option>
+                  <option>India</option>
+                  <option>China</option>
                   <option>Other</option>
                 </select>
               </div>
