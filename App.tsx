@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
+import Story from './components/Story';
 import Roadmap from './components/Roadmap';
 import Metrics from './components/Metrics';
 import TechStack from './components/TechStack';
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <Features />
+        <Story />
         <Roadmap />
         <Metrics />
         <TechStack />

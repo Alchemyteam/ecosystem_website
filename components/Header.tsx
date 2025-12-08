@@ -81,6 +81,7 @@ const Header: React.FC = () => {
                     if (e.key === 'Enter') {
                       const q = searchQuery.trim().toLowerCase();
                       const idx = [
+                        { label: 'Story', href: '#story' },
                         { label: 'Modules', href: '#modules' },
                         { label: 'Roadmap', href: '#roadmap' },
                         { label: 'Impact', href: '#impact' },
@@ -110,6 +111,7 @@ const Header: React.FC = () => {
                 }`}
             >
               {[
+                { label: 'Story', href: '#story' },
                 { label: 'Modules', href: '#modules' },
                 { label: 'Roadmap', href: '#roadmap' },
                 { label: 'Impact', href: '#impact' },
@@ -144,13 +146,14 @@ const Header: React.FC = () => {
             }}
           >
             <div className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-brand-600 cursor-pointer">
-              <span>POC</span>
+              <span>Our Journey</span>
               <ChevronDown className="w-4 h-4" />
             </div>
             <div
               className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${isPOCOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                 }`}
             >
+              <a href="#story" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Story</a>
               <a href="#roadmap" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Roadmap</a>
               <a href="#impact" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Impact</a>
               <a href="#tech" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">TechStack</a>
@@ -212,11 +215,12 @@ const Header: React.FC = () => {
               className="w-full flex items-center justify-between text-base font-medium text-slate-700"
               onClick={() => setIsPOCOpenMobile(!isPOCOpenMobile)}
             >
-              <span>POC</span>
+              <span>Our Journey</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${isPOCOpenMobile ? 'rotate-180' : ''}`} />
             </button>
             {isPOCOpenMobile && (
               <div className="mt-2 pl-2 flex flex-col gap-2">
+                <a href="#story" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Story</a>
                 <a href="#roadmap" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Roadmap</a>
                 <a href="#impact" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Impact</a>
                 <a href="#tech" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>TechStack</a>

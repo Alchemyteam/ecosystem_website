@@ -1,12 +1,73 @@
 import React, { useState } from 'react';
 
+interface Question {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+interface Category {
+  key: string;
+  label: string;
+  questions: Question[];
+}
+
 const FAQ: React.FC = () => {
-  const items = [
-    { key: 'investor', label: 'For investor', content: 'Hello，investor' },
-    { key: 'buyer', label: 'For buyer', content: 'Hello，buyer' },
-    { key: 'seller', label: 'For seller', content: 'Hello，seller' },
+  const categories: Category[] = [
+    {
+      key: 'investor',
+      label: 'For Investor',
+      questions: [
+        { id: 'investor-q1', question: 'Q1', answer: 'A：……' },
+        { id: 'investor-q2', question: 'Q2', answer: 'A：……' },
+        { id: 'investor-q3', question: 'Q3', answer: 'A：……' },
+      ],
+    },
+    {
+      key: 'buyer',
+      label: 'For Buyer',
+      questions: [
+        { id: 'buyer-q1', question: 'Q1', answer: 'A：……' },
+        { id: 'buyer-q2', question: 'Q2', answer: 'A：……' },
+        { id: 'buyer-q3', question: 'Q3', answer: 'A：……' },
+      ],
+    },
+    {
+      key: 'seller',
+      label: 'For Seller',
+      questions: [
+        { id: 'seller-q1', question: 'Q1', answer: 'A：……' },
+        { id: 'seller-q2', question: 'Q2', answer: 'A：……' },
+        { id: 'seller-q3', question: 'Q3', answer: 'A：……' },
+      ],
+    },
+    {
+      key: 'pe',
+      label: 'For PE',
+      questions: [
+        { id: 'pe-q1', question: 'Q1', answer: 'A：……' },
+        { id: 'pe-q2', question: 'Q2', answer: 'A：……' },
+        { id: 'pe-q3', question: 'Q3', answer: 'A：……' },
+      ],
+    },
   ];
-  const [openKey, setOpenKey] = useState<string | null>(null);
+
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+
+  const handleCategoryClick = (categoryKey: string) => {
+    if (openCategory === categoryKey) {
+      setOpenCategory(null);
+      setOpenQuestion(null);
+    } else {
+      setOpenCategory(categoryKey);
+      setOpenQuestion(null);
+    }
+  };
+
+  const handleQuestionClick = (questionId: string) => {
+    setOpenQuestion(openQuestion === questionId ? null : questionId);
+  };
 
   return (
     <section id="faq" className="py-20 bg-slate-50 border-t border-slate-200">
@@ -16,24 +77,52 @@ const FAQ: React.FC = () => {
           <p className="mt-4 text-slate-600 max-w-2xl mx-auto">Find the answers to your questions.</p>
         </div>
         <div className="space-y-4">
-          {items.map((item) => (
+          {categories.map((category) => (
             <div
-              key={item.key}
-              className={`rounded-lg transition-colors ${
-                openKey === item.key
+              key={category.key}
+              className={`rounded-lg transition-colors ${openCategory === category.key
                   ? 'bg-white border border-slate-200 shadow-sm'
                   : 'bg-transparent border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm'
-              }`}
+                }`}
             >
+              {/* Category Header */}
               <button
-                onClick={() => setOpenKey(openKey === item.key ? null : item.key)}
-                className="w-full flex items-center justify-between px-5 py-4 text-slate-900 font-semibold text-2xl hover:bg-slate-50"
+                onClick={() => handleCategoryClick(category.key)}
+                className="w-full flex items-center justify-between px-5 py-4 text-slate-900 font-semibold text-2xl hover:bg-slate-50 rounded-lg"
               >
-                <span>{item.label}</span>
-                <span className={`transition-transform ${openKey === item.key ? 'rotate-180' : ''}`}>▾</span>
+                <span>{category.label}</span>
+                <span className={`transition-transform ${openCategory === category.key ? 'rotate-180' : ''}`}>▾</span>
               </button>
-              {openKey === item.key && (
-                <div className="px-4 pb-4 text-slate-700">{item.content}</div>
+
+              {/* Questions List */}
+              {openCategory === category.key && (
+                <div className="px-4 pb-4 space-y-2">
+                  {category.questions.map((question) => (
+                    <div
+                      key={question.id}
+                      className={`rounded-md transition-colors ${openQuestion === question.id
+                          ? 'bg-slate-50 border border-slate-200'
+                          : 'bg-transparent border border-transparent hover:bg-slate-50 hover:border-slate-200'
+                        }`}
+                    >
+                      {/* Question Header */}
+                      <button
+                        onClick={() => handleQuestionClick(question.id)}
+                        className="w-full flex items-center justify-between px-4 py-3 text-slate-800 font-medium text-lg hover:bg-slate-100 rounded-md"
+                      >
+                        <span>{question.question}</span>
+                        <span className={`transition-transform text-sm ${openQuestion === question.id ? 'rotate-180' : ''}`}>▾</span>
+                      </button>
+
+                      {/* Answer */}
+                      {openQuestion === question.id && (
+                        <div className="px-4 pb-3 text-slate-600">
+                          {question.answer}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           ))}
