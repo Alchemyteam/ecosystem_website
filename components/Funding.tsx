@@ -31,7 +31,7 @@ const PledgeForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white rounded-2xl p-8 max-w-2xl w-full" onClick={(e) => e.stopPropagation()}>
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-slate-900">Pledge Now</h2>
                     <button onClick={onClose} className="text-slate-400 hover:text-slate-600 text-2xl">×</button>
@@ -99,18 +99,15 @@ const PledgeForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     </div>
                     <div className="md:col-span-2">
                         <label className="block text-sm font-medium text-slate-700 mb-1">Additional Comments</label>
-                        <textarea value={form.comments} onChange={(e) => setForm({ ...form, comments: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" rows={3} />
+                        <textarea value={form.comments} onChange={(e) => setForm({ ...form, comments: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" rows={2} />
                     </div>
                     <div className="md:col-span-2 flex items-center gap-2">
                         <input id="privacy-pledge" type="checkbox" checked={form.accepted} onChange={(e) => setForm({ ...form, accepted: e.target.checked })} className="w-4 h-4 border-slate-300 rounded" />
                         <label htmlFor="privacy-pledge" className="text-sm text-slate-700">I agree to the privacy policy *</label>
                     </div>
-                    <div className="md:col-span-2 flex gap-3">
-                        <button type="submit" disabled={!form.accepted} className="flex-1 px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    <div className="md:col-span-2">
+                        <button type="submit" disabled={!form.accepted} className="w-full px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                             Submit Pledge
-                        </button>
-                        <button type="button" onClick={onClose} className="px-8 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-semibold transition-colors">
-                            Cancel
                         </button>
                     </div>
                 </form>
