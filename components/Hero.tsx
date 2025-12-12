@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="relative pt-24 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-100 via-white to-white opacity-70"></div>
       <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-gradient-to-b from-blue-50/50 to-transparent blur-3xl"></div>
@@ -28,34 +28,31 @@ const Hero: React.FC = () => {
               Optimizing rentals, ensuring compliance, and driving liquidity in the infrastructure logistics sector.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto lg:mx-0">
               <a
                 href="#contact"
-                className="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-lg transition-all shadow-xl shadow-brand-500/30 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-lg transition-all shadow-xl shadow-brand-500/30 flex items-center justify-center gap-2"
               >
-                Join the Ecosystem <ArrowRight className="w-5 h-5" />
+                Join Ecosystem <ArrowRight className="w-5 h-5" />
               </a>
               <a
                 href="#modules"
-                className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+                className="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
               >
-                Explore Modules
+                Explore Module
               </a>
-            </div>
-
-            <div className="mt-10 pt-8 border-t border-slate-100 flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 text-sm text-slate-500">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Zero Disputes</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Compliance Ready</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Secure Azure Host</span>
-              </div>
+              <a
+                href="#how"
+                className="px-8 py-4 bg-slate-700 hover:bg-slate-800 text-white rounded-xl font-semibold text-lg transition-all shadow-lg flex items-center justify-center gap-2"
+              >
+                See How It Works
+              </a>
+              <a
+                href="#contact"
+                className="px-8 py-4 bg-gradient-to-r from-brand-500 to-purple-600 hover:from-brand-600 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition-all shadow-lg flex items-center justify-center"
+              >
+                Try Demo
+              </a>
             </div>
           </div>
 
@@ -72,22 +69,22 @@ const Hero: React.FC = () => {
 
               {/* Mock Grid */}
               <div className="grid grid-cols-2 gap-4 h-full">
-                <div className="bg-brand-50/50 rounded-xl p-4 border border-brand-100 flex flex-col justify-between">
-                  <div className="w-8 h-8 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center mb-2">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                <div className="bg-purple-50/50 rounded-xl p-4 border border-purple-100 flex flex-col justify-between">
+                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-2">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-slate-800">Scalable</div>
-                    <div className="text-xs text-slate-500">Credit Rail</div>
+                    <div className="text-2xl font-bold text-slate-800">AURA</div>
+                    <div className="text-xs text-slate-500">finds the correct item.</div>
                   </div>
                 </div>
-                <div className="bg-green-50/50 rounded-xl p-4 border border-green-100 flex flex-col justify-between">
-                  <div className="w-8 h-8 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-2">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                <div className="bg-blue-50/50 rounded-xl p-4 border border-blue-100 flex flex-col justify-between">
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-2">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-slate-800">100%</div>
-                    <div className="text-xs text-slate-500">Demand Driven Merchandise</div>
+                    <div className="text-2xl font-bold text-slate-800">VECTOR</div>
+                    <div className="text-xs text-slate-500">guarantees flawless execution</div>
                   </div>
                 </div>
                 <div className="col-span-2 bg-white rounded-xl border border-slate-100 shadow-sm p-4">
@@ -117,6 +114,28 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
+        </div>
+
+        {/* Full-width green checkmarks section */}
+        <div className="mt-8 pt-6 border-t border-slate-200">
+          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-x-8 gap-y-4 text-sm text-slate-500">
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <span>Zero disputes in 6 months</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <span>Scalable Credit Rail</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <span>100% Demand Driven Merchandise</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <span>GTM pipeline live Day 1</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

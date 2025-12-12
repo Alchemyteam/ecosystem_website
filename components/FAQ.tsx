@@ -18,7 +18,21 @@ const FAQ: React.FC = () => {
       key: 'investor',
       label: 'For Investor',
       questions: [
-        { id: 'investor-q1', question: 'Q1', answer: 'A：……' },
+        {
+          id: 'investor-q1',
+          question: 'WHY PLATFORM EXISTS',
+          answer: `Industrial Procurement Today Is Slow, Inaccurate & Expensive
+
+Buyer Employees lose thousands of hours due to:
+• Confusing SKU naming
+• Inconsistent specifications
+• Wrong micron / wrong model / wrong material
+• Manual checks
+• Delays
+• Compliance exposure
+
+The platform solves all of these pain points end-to-end.`
+        },
         { id: 'investor-q2', question: 'Q2', answer: 'A：……' },
         { id: 'investor-q3', question: 'Q3', answer: 'A：……' },
       ],
@@ -81,8 +95,8 @@ const FAQ: React.FC = () => {
             <div
               key={category.key}
               className={`rounded-lg transition-colors ${openCategory === category.key
-                  ? 'bg-white border border-slate-200 shadow-sm'
-                  : 'bg-transparent border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm'
+                ? 'bg-white border border-slate-200 shadow-sm'
+                : 'bg-transparent border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm'
                 }`}
             >
               {/* Category Header */}
@@ -101,8 +115,8 @@ const FAQ: React.FC = () => {
                     <div
                       key={question.id}
                       className={`rounded-md transition-colors ${openQuestion === question.id
-                          ? 'bg-slate-50 border border-slate-200'
-                          : 'bg-transparent border border-transparent hover:bg-slate-50 hover:border-slate-200'
+                        ? 'bg-slate-50 border border-slate-200'
+                        : 'bg-transparent border border-transparent hover:bg-slate-50 hover:border-slate-200'
                         }`}
                     >
                       {/* Question Header */}
