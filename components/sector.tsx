@@ -61,20 +61,49 @@ const Sector: React.FC = () => {
   ];
 
   return (
-    <section id="sector" className="py-20 bg-slate-50 border-t border-slate-200">
-      <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-slate-900">Sector</h2>
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">Industries We Serve</p>
+    <section id="sector" className="relative py-16 bg-slate-50/50 overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+      {/* Gradient Blobs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Sectors</h2>
+          <p className="mt-3 text-slate-600 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+            Specialized solutions for core industries.
+          </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {sectors.map((s, i) => (
-            <div key={s.title} className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-4">
-                {s.icon}
+            <div key={s.title} className="group relative bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+              {/* Top accent line */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-50 transition-colors duration-300">
+                  <div className="text-slate-500 group-hover:text-brand-600 transition-colors duration-300">
+                    {s.icon}
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-700 transition-colors">{s.title}</h3>
+                <p className="text-slate-500 leading-relaxed text-sm font-medium">{s.desc}</p>
+
+                {/* Subtle Arrow */}
+                <div className="mt-4 flex items-center text-brand-600 text-sm font-semibold opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
+                  <span>Learn More</span>
+                  <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
               </div>
-              <h3 className="font-bold text-slate-900 mb-2">{s.title}</h3>
-              <p className="text-slate-600">{s.desc}</p>
+
+              {/* Background Gradient on Hover */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-50/50 to-transparent rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
             </div>
           ))}
         </div>

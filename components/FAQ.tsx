@@ -4,6 +4,7 @@ interface Question {
   id: string;
   question: string;
   answer: string;
+  summary?: string; // Optional summary for expandable answers
 }
 
 interface Category {
@@ -21,16 +22,17 @@ const FAQ: React.FC = () => {
         {
           id: 'investor-q1',
           question: 'WHY PLATFORM EXISTS',
-          answer: `Industrial Procurement Today Is Slow, Inaccurate & Expensive
-
+          summary: `Industrial Procurement Today Is Slow, Inaccurate & Expensive
 Buyer Employees lose thousands of hours due to:
-• Confusing SKU naming
-• Inconsistent specifications
-• Wrong micron / wrong model / wrong material
-• Manual checks
-• Delays
-• Compliance exposure
-
+Confusing SKU naming`,
+          answer: `Industrial Procurement Today Is Slow, Inaccurate & Expensive
+Buyer Employees lose thousands of hours due to:
+Confusing SKU naming
+Inconsistent specifications
+Wrong micron / wrong model / wrong material
+Manual checks
+Delays
+Compliance exposure
 The platform solves all of these pain points end-to-end.`
         },
         { id: 'investor-q2', question: 'Q2', answer: 'A：……' },
@@ -68,6 +70,7 @@ The platform solves all of these pain points end-to-end.`
 
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+  const [readMoreState, setReadMoreState] = useState<{ [key: string]: boolean }>({});
 
   const handleCategoryClick = (categoryKey: string) => {
     if (openCategory === categoryKey) {
@@ -83,8 +86,13 @@ The platform solves all of these pain points end-to-end.`
     setOpenQuestion(openQuestion === questionId ? null : questionId);
   };
 
+  const toggleReadMore = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setReadMoreState(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
-    <section id="faq" className="py-20 bg-slate-50 border-t border-slate-200">
+    <section id="faq" className="py-16 bg-slate-50 border-t border-slate-200">
       <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
@@ -111,31 +119,44 @@ The platform solves all of these pain points end-to-end.`
               {/* Questions List */}
               {openCategory === category.key && (
                 <div className="px-4 pb-4 space-y-2">
-                  {category.questions.map((question) => (
-                    <div
-                      key={question.id}
-                      className={`rounded-md transition-colors ${openQuestion === question.id
-                        ? 'bg-slate-50 border border-slate-200'
-                        : 'bg-transparent border border-transparent hover:bg-slate-50 hover:border-slate-200'
-                        }`}
-                    >
-                      {/* Question Header */}
-                      <button
-                        onClick={() => handleQuestionClick(question.id)}
-                        className="w-full flex items-center justify-between px-4 py-3 text-slate-800 font-medium text-lg hover:bg-slate-100 rounded-md"
-                      >
-                        <span>{question.question}</span>
-                        <span className={`transition-transform text-sm ${openQuestion === question.id ? 'rotate-180' : ''}`}>▾</span>
-                      </button>
+                  {category.questions.map((question) => {
+                    const isExpanded = readMoreState[question.id];
+                    const contentToShow = question.summary && !isExpanded ? question.summary : question.answer;
 
-                      {/* Answer */}
-                      {openQuestion === question.id && (
-                        <div className="px-4 pb-3 text-slate-600">
-                          {question.answer}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                    return (
+                      <div
+                        key={question.id}
+                        className={`rounded-md transition-colors ${openQuestion === question.id
+                          ? 'bg-slate-50 border border-slate-200'
+                          : 'bg-transparent border border-transparent hover:bg-slate-50 hover:border-slate-200'
+                          }`}
+                      >
+                        {/* Question Header */}
+                        <button
+                          onClick={() => handleQuestionClick(question.id)}
+                          className="w-full flex items-center justify-between px-4 py-3 text-slate-800 font-medium text-lg hover:bg-slate-100 rounded-md"
+                        >
+                          <span>{question.question}</span>
+                          <span className={`transition-transform text-sm ${openQuestion === question.id ? 'rotate-180' : ''}`}>▾</span>
+                        </button>
+
+                        {/* Answer */}
+                        {openQuestion === question.id && (
+                          <div className="px-4 pb-3 text-slate-600 whitespace-pre-line">
+                            {contentToShow}
+                            {question.summary && !isExpanded && (
+                              <button
+                                onClick={(e) => toggleReadMore(question.id, e)}
+                                className="text-brand-600 hover:text-brand-700 font-medium ml-1 hover:underline focus:outline-none"
+                              >
+                                ... Read More
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>

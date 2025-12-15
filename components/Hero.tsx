@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative pt-24 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section className="relative pt-20 pb-12 lg:pt-28 lg:pb-16 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-100 via-white to-white opacity-70"></div>
       <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-gradient-to-b from-blue-50/50 to-transparent blur-3xl"></div>
@@ -18,14 +18,23 @@ const Hero: React.FC = () => {
               Ecosystem Platform
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+            {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
               Strategic Sector <br className="hidden lg:block" />
               <span className="text-brand-600">Penetration & Growth</span>
+            </h1> */}
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+              <span className="text-cyan-500">AURA</span> reads the industrial world. <br className="hidden lg:block" />
+              <span className="text-purple-600">VECTOR</span> enforces its rules.
             </h1>
 
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            {/* <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               A market-facing, neutral platform connecting Buyers, Sellers, and PEs.
               Optimizing rentals, ensuring compliance, and driving liquidity in the infrastructure logistics sector.
+            </p> */}
+
+            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              The future of industrial procurement begins here.
             </p>
 
             <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto lg:mx-0">

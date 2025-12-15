@@ -40,7 +40,7 @@ const Glossary: React.FC = () => {
   };
 
   return (
-    <section id="glossary" className="py-20 bg-slate-50 border-t border-slate-200">
+    <section id="glossary" className="py-16 bg-slate-50 border-t border-slate-200">
       <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-slate-900">Glossary</h2>
@@ -54,10 +54,10 @@ const Glossary: React.FC = () => {
               key={letter}
               onClick={() => handleLetterClick(letter)}
               className={`aspect-square w-full min-w-[40px] max-w-[50px] flex items-center justify-center rounded-md font-semibold text-sm transition-all ${selectedLetter === letter
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : glossaryData[letter]
-                    ? 'bg-white text-slate-900 border border-slate-300 hover:bg-slate-100 hover:border-slate-400'
-                    : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
+                ? 'bg-slate-900 text-white shadow-md'
+                : glossaryData[letter]
+                  ? 'bg-white text-slate-900 border border-slate-300 hover:bg-slate-100 hover:border-slate-400'
+                  : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
                 }`}
               disabled={!glossaryData[letter]}
             >

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Investor: React.FC = () => {
   return (
-    <section id="investor" className="py-20 bg-slate-50 border-t border-slate-200">
+    <section id="investor" className="py-16 bg-slate-50 border-t border-slate-200">
       <div className="mx-auto w-full md:w-[90%] lg:w-[90%] xl:w-[90%] px-4 md:px-0">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-slate-900">Investing</h2>
@@ -13,14 +13,14 @@ const Investor: React.FC = () => {
           <div className="p-6 rounded-xl transition-colors bg-transparent border border-transparent hover:bg-white hover:border-slate-100 hover:shadow-sm">
             <h3 className="font-bold text-slate-900 mb-3">Strategic Equity</h3>
             <p className="text-slate-600 leading-relaxed">
-            To invest with vision, you need a high-conviction market perspective. We develop ours by distilling real transactional data across the entire B2B2C ecosystem of verified Sellers, Buyers, and Project Engineers (PEs). Investing in X provides access to this unique data equity, which serves as a leading indicator for strategic capital allocation across the supply chain.
+              To invest with vision, you need a high-conviction market perspective. We develop ours by distilling real transactional data across the entire B2B2C ecosystem of verified Sellers, Buyers, and Project Engineers (PEs). Investing in X provides access to this unique data equity, which serves as a leading indicator for strategic capital allocation across the supply chain.
             </p>
           </div>
 
           <div className="p-6 rounded-xl transition-colors bg-transparent border border-transparent hover:bg-white hover:border-slate-100 hover:shadow-sm">
             <h3 className="font-bold text-slate-900 mb-3">Digital Asset</h3>
             <p className="text-slate-600 leading-relaxed">
-             X represents a high-growth, technology-enabled private asset, offering direct exposure to the non-cyclical digitization of the supply chain. As a market-facing, neutral platform, it functions as a mission-critical piece of digital infrastructure. This investment provides an attractive long-term complement to traditional public stock or bond allocations, capturing value from standardized process and transaction control.
+              X represents a high-growth, technology-enabled private asset, offering direct exposure to the non-cyclical digitization of the supply chain. As a market-facing, neutral platform, it functions as a mission-critical piece of digital infrastructure. This investment provides an attractive long-term complement to traditional public stock or bond allocations, capturing value from standardized process and transaction control.
             </p>
           </div>
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Features from './components/Features';
+import Module from './components/module';
 import Story from './components/Story';
 import Roadmap from './components/Roadmap';
-import Metrics from './components/Metrics';
+import Success from './components/success';
 import TechStack from './components/TechStack';
 import Contact from './components/Contact';
 import Investor from './components/Investor';
@@ -21,10 +21,10 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
-        <Features />
+        <Module />
         <Story />
         <Roadmap />
-        <Metrics />
+        <Success />
         <TechStack />
         <Sector />
         <Investor />
