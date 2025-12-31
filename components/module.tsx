@@ -1,6 +1,8 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Module: React.FC = () => {
+    const { t } = useLanguage();
     return (
         <section id="modules" className="relative py-16 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
             {/* Animated Background Elements */}
@@ -16,11 +18,11 @@ const Module: React.FC = () => {
                 {/* Header Section */}
                 <div className="text-center mb-8">
                     <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-brand-200 to-purple-200 bg-clip-text text-transparent leading-tight">
-                        BUILT FOR ENTERPRISE. DESIGNED FOR SCALE.
+                        {t('module.title')}
                     </h2>
 
                     <div className="max-w-2xl mx-auto text-slate-300 text-sm">
-                        <p className="font-light">Every search trains <span className="text-cyan-300 font-semibold">AURA</span>. Every transaction runs through <span className="text-purple-400 font-semibold">VECTOR</span>.</p>
+                        <p className="font-light">{t('module.subtitle')} <span className="text-cyan-300 font-semibold">{t('module.aura')}</span>{t('module.subtitleMiddle')} <span className="text-purple-400 font-semibold">{t('module.vector')}</span>{t('module.subtitleEnd')}</p>
                     </div>
                 </div>
 
@@ -40,8 +42,8 @@ const Module: React.FC = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-bold text-white">AURA</h3>
-                                        <p className="text-cyan-300 text-xs font-medium">Industrial Intelligence Engine</p>
+                                        <h3 className="text-lg font-bold text-white">{t('module.auraTitle')}</h3>
+                                        <p className="text-cyan-300 text-xs font-medium">{t('module.auraSubtitle')}</p>
                                     </div>
                                 </div>
                                 <div className="h-0.5 w-16 bg-gradient-to-r from-brand-500 to-cyan-500 rounded-full"></div>
@@ -51,20 +53,20 @@ const Module: React.FC = () => {
                             <div className="space-y-3">
                                 <div className="bg-gradient-to-br from-brand-500/10 to-cyan-500/10 rounded-xl p-3 border border-brand-500/20">
                                     <h4 className="text-sm font-bold text-white leading-tight">
-                                        AURA Thinks Like an Engineer.<br />
-                                        <span className="text-cyan-300 text-xs">So your Buyer Employees don't have to.</span>
+                                        {t('module.auraHeadline1')}<br />
+                                        <span className="text-cyan-300 text-xs">{t('module.auraHeadline2')}</span>
                                     </h4>
                                 </div>
 
                                 <div>
-                                    <p className="text-slate-300 font-semibold mb-2 text-xs">AURA understands:</p>
+                                    <p className="text-slate-300 font-semibold mb-2 text-xs">{t('module.auraUnderstands')}</p>
                                     <ul className="space-y-1.5">
                                         {[
-                                            'Function, Model, Micron',
-                                            'Material & Media',
-                                            'Country of Origin',
-                                            'Sector context (O&G, IG, Marine, Pharma)',
-                                            'Buyer Employee behaviour'
+                                            t('module.auraItem1'),
+                                            t('module.auraItem2'),
+                                            t('module.auraItem3'),
+                                            t('module.auraItem4'),
+                                            t('module.auraItem5')
                                         ].map((item, index) => (
                                             <li key={index} className="flex items-start gap-2 group/item">
                                                 <div className="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover/item:scale-150 transition-transform flex-shrink-0"></div>
@@ -75,9 +77,9 @@ const Module: React.FC = () => {
                                 </div>
 
                                 <div className="pt-3 border-t border-slate-700/50">
-                                    <p className="text-slate-400 mb-2 text-xs">Returns correct items in seconds — not after 20 failed searches.</p>
+                                    <p className="text-slate-400 mb-2 text-xs">{t('module.auraFooter')}</p>
                                     <div className="inline-block px-3 py-1.5 rounded-lg bg-gradient-to-r from-brand-500/20 to-cyan-500/20 border border-brand-500/30">
-                                        <p className="text-cyan-300 font-bold text-xs">AURA = Precision Industrial Search</p>
+                                        <p className="text-cyan-300 font-bold text-xs">{t('module.auraTagline')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -98,8 +100,8 @@ const Module: React.FC = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-bold text-white">VECTOR</h3>
-                                        <p className="text-purple-300 text-xs font-medium">Flow & Compliance Engine</p>
+                                        <h3 className="text-lg font-bold text-white">{t('module.vectorTitle')}</h3>
+                                        <p className="text-purple-300 text-xs font-medium">{t('module.vectorSubtitle')}</p>
                                     </div>
                                 </div>
                                 <div className="h-0.5 w-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
@@ -109,21 +111,21 @@ const Module: React.FC = () => {
                             <div className="space-y-3">
                                 <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-3 border border-purple-500/20">
                                     <h4 className="text-sm font-bold text-white leading-tight">
-                                        VECTOR Executes Like a Corporate System.<br />
-                                        <span className="text-purple-300 text-xs">Because procurement cannot fail.</span>
+                                        {t('module.vectorHeadline1')}<br />
+                                        <span className="text-purple-300 text-xs">{t('module.vectorHeadline2')}</span>
                                     </h4>
                                 </div>
 
                                 <div>
-                                    <p className="text-slate-300 font-semibold mb-2 text-xs">VECTOR enforces:</p>
+                                    <p className="text-slate-300 font-semibold mb-2 text-xs">{t('module.vectorEnforces')}</p>
                                     <ul className="space-y-1.5">
                                         {[
-                                            'Order# integrity',
-                                            'Contract pricing accuracy',
-                                            'Delivery tracking',
-                                            'Identity authentication (SSO, LDAP, ADFS/IdP)',
-                                            'Compliance and audit trail',
-                                            'VMI governance & fulfilment'
+                                            t('module.vectorItem1'),
+                                            t('module.vectorItem2'),
+                                            t('module.vectorItem3'),
+                                            t('module.vectorItem4'),
+                                            t('module.vectorItem5'),
+                                            t('module.vectorItem6')
                                         ].map((item, index) => (
                                             <li key={index} className="flex items-start gap-2 group/item">
                                                 <div className="mt-1 w-1 h-1 rounded-full bg-purple-400 group-hover/item:scale-150 transition-transform flex-shrink-0"></div>
@@ -134,9 +136,9 @@ const Module: React.FC = () => {
                                 </div>
 
                                 <div className="pt-3 border-t border-slate-700/50">
-                                    <p className="text-slate-400 mb-2 text-xs">Every transaction becomes correct, safe, and traceable.</p>
+                                    <p className="text-slate-400 mb-2 text-xs">{t('module.vectorFooter')}</p>
                                     <div className="inline-block px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30">
-                                        <p className="text-purple-300 font-bold text-xs">VECTOR = Enterprise Procurement Infrastructure</p>
+                                        <p className="text-purple-300 font-bold text-xs">{t('module.vectorTagline')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +154,7 @@ const Module: React.FC = () => {
                             <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
                             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
                         </div>
-                        <span className="text-slate-400 text-xs">Dual-Engine Architecture, Compound Value.</span>
+                        <span className="text-slate-400 text-xs">{t('module.bottomAccent')}</span>
                     </div>
                 </div>
             </div>

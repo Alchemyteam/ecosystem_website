@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -33,49 +35,48 @@ const Contact: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="text-center lg:text-left">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Contact us</h2>
-            <h3 className="text-2xl font-semibold text-white mb-3">Secure Your Phase 1 MVP Access</h3>
-            <p className="text-lg text-blue-100">Join the first ecosystem platform anchored in Singapore setting global standards.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">{t('contact.title')}</h2>
+            <h3 className="text-2xl font-semibold text-white mb-3">{t('contact.heading')}</h3>
+            <p className="text-lg text-blue-100">{t('contact.description')}</p>
             {/* <p className="text-lg text-blue-100 mb-10 max-w-2xl">
               Join the first ecosystem platform anchored in Singapore setting global standards. 
               Secure your spot for Phase 1 MVP access today.
             </p> */}
             <p className="mt-6 text-sm text-blue-300">
-              Limited spots available for early adopters.<br></br>
-              Priority given to regional infrastructure players.
+              {t('contact.limitedSpots')}<br></br>
+              {t('contact.priorityGiven')}
             </p>
 
-            <h3 className="mt-6 text-2xl font-semibold text-white">We're Here to Help</h3>
+            <h3 className="mt-6 text-2xl font-semibold text-white">{t('contact.helpHeading')}</h3>
             <p className="text-lg text-blue-100">
-              Your questions, feedbacks, and collaboration proposals are Welcome.
+              {t('contact.helpDescription')}
             </p>
             <p className="text-sm text-blue-300">
-              Unable to find the information you are looking for or have something you wish to ask us?
-              Simply fill in this form below and we will get back to you shortly!
+              {t('contact.helpSubtext')}
             </p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 shadow-xl border border-slate-200">
             {formSubmitted && (
-              <div className="mb-4 bg-green-50 text-green-700 p-3 rounded-md border border-green-200">Thanks! We'll reach out soon.</div>
+              <div className="mb-4 bg-green-50 text-green-700 p-3 rounded-md border border-green-200">{t('contact.successMessage')}</div>
             )}
             <form onSubmit={handleSubmitForm} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">First Name *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.firstName')} {t('contact.required')}</label>
                 <input value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Last Name *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.lastName')} {t('contact.required')}</label>
                 <input value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">Company *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.company')} {t('contact.required')}</label>
                 <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Country *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.country')} {t('contact.required')}</label>
                 <select value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required>
-                  <option value="">Select</option>
+                  <option value="">{t('contact.selectCountry')}</option>
                   <option>Singapore</option>
                   <option>Malaysia</option>
                   <option>Indonesia</option>
@@ -93,24 +94,24 @@ const Contact: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Contact Number *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.contactNumber')} {t('contact.required')}</label>
                 <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">Email *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.email')} {t('contact.required')}</label>
                 <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">Additional Comments</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('contact.additionalComments')}</label>
                 <textarea value={form.comments} onChange={(e) => setForm({ ...form, comments: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" rows={2} />
               </div>
               <div className="md:col-span-2 flex items-center gap-2">
                 <input id="privacy" type="checkbox" checked={form.accepted} onChange={(e) => setForm({ ...form, accepted: e.target.checked })} className="w-4 h-4 border-slate-300 rounded" />
-                <label htmlFor="privacy" className="text-sm text-slate-700">I agree to the privacy policy *</label>
+                <label htmlFor="privacy" className="text-sm text-slate-700">{t('contact.privacyPolicy')} {t('contact.required')}</label>
               </div>
               <div className="md:col-span-2">
                 <button type="submit" disabled={!form.accepted} className="w-full sm:w-auto px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                  Let's talk <ArrowRight className="w-5 h-5" />
+                  {t('contact.submitButton')} <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
             </form>

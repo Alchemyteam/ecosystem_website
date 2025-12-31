@@ -1,78 +1,81 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const TechStack: React.FC = () => {
+  const { t } = useLanguage();
+
   const stackItems = [
     {
-      title: 'AI / ML Layer',
+      title: t('techStack.layer1Title'),
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
       content: [
-        'Azure OpenAI service (Enterprise ChatGPT)',
-        'Power Platform AI Builder Credits',
-        'Azure AI Document Intelligence'
+        t('techStack.layer1Item1'),
+        t('techStack.layer1Item2'),
+        t('techStack.layer1Item3')
       ]
     },
     {
-      title: 'Platform & Application Layer',
+      title: t('techStack.layer2Title'),
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
         </svg>
       ),
       content: [
-        'Azure App Service / API Management (APIM) / Event Grid / Functions'
+        t('techStack.layer2Item1')
       ]
     },
     {
-      title: 'Tech Stack',
+      title: t('techStack.layer3Title'),
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       ),
       content: [
-        'UI Framework, DevOps & Collab:',
-        'React, GitHub Enterprise/Azure DevOps',
-        'Back End Database:',
-        'MySQL/Postgresql/Google Database/Odoo'
+        t('techStack.layer3Item1'),
+        t('techStack.layer3Item2'),
+        t('techStack.layer3Item3'),
+        t('techStack.layer3Item4')
       ]
     },
     {
-      title: 'Identity & Access',
+      title: t('techStack.layer4Title'),
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
         </svg>
       ),
       content: [
-        'Azure Entra ID + Entra External ID (MAU model)'
+        t('techStack.layer4Item1')
       ]
     },
     {
-      title: 'Security & Compliance',
+      title: t('techStack.layer5Title'),
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       ),
       content: [
-        'Azure Key Vault',
-        'Microsoft Defender + Purview'
+        t('techStack.layer5Item1'),
+        t('techStack.layer5Item2')
       ]
     },
     {
-      title: 'IP Algo + Engine',
+      title: t('techStack.layer6Title'),
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
       content: [
-        'BuyerTwin Recommender™',
-        'BuyerTwin MatchScore™'
+        t('techStack.layer6Item1'),
+        t('techStack.layer6Item2')
       ]
     }
   ];
@@ -81,9 +84,9 @@ const TechStack: React.FC = () => {
     <section id="tech" className="py-20 bg-slate-50 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-slate-900">Enterprise-Grade Architecture</h2>
+          <h2 className="text-3xl font-bold text-slate-900">{t('techStack.title')}</h2>
           <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
-            Built on robust Microsoft Azure infrastructure to ensure security, scalability, and AI-driven intelligence.
+            {t('techStack.subtitle')}
           </p>
         </div>
 

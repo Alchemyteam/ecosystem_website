@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Question {
   id: string;
@@ -14,10 +15,11 @@ interface Category {
 }
 
 const FAQ: React.FC = () => {
+  const { t } = useLanguage();
   const categories: Category[] = [
     {
       key: 'investor',
-      label: 'For Investor',
+      label: t('faq.forInvestor'),
       questions: [
         {
           id: 'investor-q1',
@@ -41,7 +43,7 @@ The platform solves all of these pain points end-to-end.`
     },
     {
       key: 'buyer',
-      label: 'For Buyer',
+      label: t('faq.forBuyer'),
       questions: [
         { id: 'buyer-q1', question: 'Q1', answer: 'A：……' },
         { id: 'buyer-q2', question: 'Q2', answer: 'A：……' },
@@ -50,7 +52,7 @@ The platform solves all of these pain points end-to-end.`
     },
     {
       key: 'seller',
-      label: 'For Seller',
+      label: t('faq.forSeller'),
       questions: [
         { id: 'seller-q1', question: 'Q1', answer: 'A：……' },
         { id: 'seller-q2', question: 'Q2', answer: 'A：……' },
@@ -59,7 +61,7 @@ The platform solves all of these pain points end-to-end.`
     },
     {
       key: 'pe',
-      label: 'For PE',
+      label: t('faq.forPE'),
       questions: [
         { id: 'pe-q1', question: 'Q1', answer: 'A：……' },
         { id: 'pe-q2', question: 'Q2', answer: 'A：……' },
@@ -95,8 +97,8 @@ The platform solves all of these pain points end-to-end.`
     <section id="faq" className="py-16 bg-slate-50 border-t border-slate-200">
       <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">Find the answers to your questions.</p>
+          <h2 className="text-3xl font-bold text-slate-900">{t('faq.title')}</h2>
+          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">{t('faq.subtitle')}</p>
         </div>
         <div className="space-y-4">
           {categories.map((category) => (
@@ -149,7 +151,7 @@ The platform solves all of these pain points end-to-end.`
                                 onClick={(e) => toggleReadMore(question.id, e)}
                                 className="text-brand-600 hover:text-brand-700 font-medium ml-1 hover:underline focus:outline-none"
                               >
-                                ... Read More
+                                {t('faq.readMore')}
                               </button>
                             )}
                           </div>

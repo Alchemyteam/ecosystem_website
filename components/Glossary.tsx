@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface GlossaryTerm {
   term: string;
@@ -10,6 +11,7 @@ interface GlossaryData {
 }
 
 const Glossary: React.FC = () => {
+  const { t } = useLanguage();
   // Define all 27 letters (A-Z and #)
   const letters = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -43,8 +45,8 @@ const Glossary: React.FC = () => {
     <section id="glossary" className="py-16 bg-slate-50 border-t border-slate-200">
       <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-slate-900">Glossary</h2>
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">Find the commonly used terms to help you better understand X.</p>
+          <h2 className="text-3xl font-bold text-slate-900">{t('glossary.title')}</h2>
+          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">{t('glossary.subtitle')}</p>
         </div>
 
         {/* Letter Buttons Grid */}
@@ -91,7 +93,7 @@ const Glossary: React.FC = () => {
         {/* Empty State */}
         {!selectedLetter && (
           <div className="text-center py-12 text-slate-500">
-            <p>Select a letter above to view glossary terms</p>
+            <p>{t('glossary.selectLetter')}</p>
           </div>
         )}
       </div>

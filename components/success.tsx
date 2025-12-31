@@ -1,20 +1,23 @@
 import React from 'react';
 import { ShieldCheck, Clock, PackageCheck, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Success: React.FC = () => {
+    const { t } = useLanguage();
+
     const metrics = [
-        { label: 'Zero disputes in 6 months', icon: ShieldCheck, color: 'from-emerald-500 to-teal-500' },
-        { label: 'Scalable Credit Rail', icon: Clock, color: 'from-blue-500 to-cyan-500' },
-        { label: '100% Demand Driven Merchandise', icon: PackageCheck, color: 'from-purple-500 to-pink-500' },
-        { label: 'GTM pipeline live Day 1', icon: TrendingUp, color: 'from-orange-500 to-red-500' }
+        { label: t('success.metric1Label'), icon: ShieldCheck, color: 'from-emerald-500 to-teal-500' },
+        { label: t('success.metric2Label'), icon: Clock, color: 'from-blue-500 to-cyan-500' },
+        { label: t('success.metric3Label'), icon: PackageCheck, color: 'from-purple-500 to-pink-500' },
+        { label: t('success.metric4Label'), icon: TrendingUp, color: 'from-orange-500 to-red-500' }
     ];
 
     const advantages = [
-        'Industrial semantic understanding',
-        'Sector-aware intelligence',
-        'Compliance-grade flow execution',
-        'Enterprise identity integration',
-        'VMI + fulfilment governance'
+        t('success.advantage1'),
+        t('success.advantage2'),
+        t('success.advantage3'),
+        t('success.advantage4'),
+        t('success.advantage5')
     ];
 
     return (
@@ -29,7 +32,7 @@ const Success: React.FC = () => {
                 {/* Section Header */}
                 <div className="text-center mb-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-                        Measurable Impact
+                        {t('success.title')}
                     </h2>
                 </div>
 
@@ -39,7 +42,7 @@ const Success: React.FC = () => {
                         <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 h-full flex flex-col">
                             <h3 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-3">
                                 <div className="w-1 h-6 bg-gradient-to-b from-brand-500 to-purple-500 rounded-full"></div>
-                                Success Metrics
+                                {t('success.metricsTitle')}
                             </h3>
 
                             <div className="grid gap-3 flex-1">
@@ -77,7 +80,7 @@ const Success: React.FC = () => {
                                 {/* Title */}
                                 <div className="mb-5">
                                     <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-white via-brand-200 to-purple-200 bg-clip-text text-transparent mb-3">
-                                        WHY THIS PLATFORM WINS
+                                        {t('success.platformWinsTitle')}
                                     </h3>
                                     <div className="h-0.5 w-16 bg-gradient-to-r from-brand-500 to-purple-500 rounded-full"></div>
                                 </div>
@@ -85,17 +88,17 @@ const Success: React.FC = () => {
                                 {/* Key Message */}
                                 <div className="mb-5 p-4 rounded-xl bg-gradient-to-br from-brand-500/10 to-cyan-500/10 border border-brand-500/30 backdrop-blur-sm">
                                     <p className="text-base font-bold text-white leading-relaxed">
-                                        We Don't Show Catalogues.
+                                        {t('success.keyMessage1')}
                                     </p>
                                     <p className="text-lg font-bold text-cyan-300 mt-1">
-                                        We Understand Technical Intent.
+                                        {t('success.keyMessage2')}
                                     </p>
                                 </div>
 
                                 {/* Advantages List */}
                                 <div className="mb-5 flex-1">
                                     <p className="text-slate-300 text-xs font-semibold mb-3 uppercase tracking-wide">
-                                        Our advantage is the combination of:
+                                        {t('success.advantageTitle')}
                                     </p>
 
                                     <ul className="space-y-2">
@@ -116,15 +119,15 @@ const Success: React.FC = () => {
                                 <div className="pt-4 border-t border-slate-700/50 space-y-2">
                                     <div className="flex items-start gap-2">
                                         <span className="text-cyan-400 font-bold text-xs">AURA</span>
-                                        <span className="text-slate-300 text-xs">reduces cognitive load.</span>
+                                        <span className="text-slate-300 text-xs">{t('success.auraFooter')}</span>
                                     </div>
                                     <div className="flex items-start gap-2">
                                         <span className="text-purple-400 font-bold text-xs">VECTOR</span>
-                                        <span className="text-slate-300 text-xs">eliminates flow friction.</span>
+                                        <span className="text-slate-300 text-xs">{t('success.vectorFooter')}</span>
                                     </div>
                                     <div className="mt-3 pt-3 border-t border-slate-700/30">
                                         <p className="text-white font-bold text-sm">
-                                            Together, they produce an unmatched procurement engine.
+                                            {t('success.footerSummary')}
                                         </p>
                                     </div>
                                 </div>

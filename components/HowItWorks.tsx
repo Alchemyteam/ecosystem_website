@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import { Play, Lock, X } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
-const HowItWorks: React.FC = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+// Link Contact Form Component (Reuse styling from Contact/Pledge)
+const LinkContactForm: React.FC<{ onClose: () => void; onSubmitSuccess: () => void }> = ({ onClose, onSubmitSuccess }) => {
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -12,180 +12,175 @@ const HowItWorks: React.FC = () => {
     country: '',
     phone: '',
     email: '',
-    accepted: false,
   });
-
-  const handlePlayClick = () => {
-    if (!isUnlocked) {
-      setShowForm(true);
-    }
-  };
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.accepted) return;
-    if (!form.firstName || !form.lastName || !form.company || !form.country || !form.phone || !form.email) return;
-
     // Simulate API call
     setTimeout(() => {
-      setIsUnlocked(true);
-      setShowForm(false);
-      // Auto-play video after unlocking
-      if (videoRef.current) {
-        videoRef.current.play();
-      }
-    }, 500);
+      setFormSubmitted(true);
+      setTimeout(() => {
+        onSubmitSuccess();
+      }, 1500);
+    }, 1000);
   };
 
   return (
-    <section id="how" className="py-20 bg-slate-50">
-      <div className="mx-auto w-full md:w-[80%] lg:w-[75%] xl:w-[70%] px-4 md:px-0">
-        <div className="mb-12 md:text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900">How it works</h2>
-          <p className="mt-4 text-lg text-slate-600">X functions as a B2B2C ecosystem connecting Sellers to Buyers for transactions, with Project Engineers (PEs) utilizing its features to procure, manage, and oversee supplies.</p>
+    <div className="absolute inset-0 bg-slate-900/90 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300">
+      <div className="bg-white rounded-2xl p-6 md:p-8 max-w-lg w-full shadow-2xl scale-100 animate-in fade-in zoom-in duration-300 relative">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-100 text-brand-600 mb-4">
+            <Lock className="w-6 h-6" />
+          </div>
+          <h3 className="text-xl font-bold text-slate-900">{t('howItWorks.unlockDemo')}</h3>
+          <p className="text-slate-500 text-sm mt-2">{t('howItWorks.unlockSubtitle')}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 relative overflow-hidden">
-            {/* Video Container */}
-            <div className="relative pb-[56.25%] rounded-lg overflow-hidden bg-slate-900">
-              <video
-                ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover"
-                controls={isUnlocked}
-                poster="/video-poster.jpg"
-                onPlay={(e) => {
-                  if (!isUnlocked) {
-                    e.preventDefault();
-                    (e.target as HTMLVideoElement).pause();
-                    handlePlayClick();
-                  }
-                }}
-              >
-                <source src="/video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+        {formSubmitted ? (
+          <div className="bg-green-50 text-green-700 p-4 rounded-xl border border-green-200 text-center animate-pulse">
+            <p className="font-semibold text-lg">{t('contact.successMessage')}</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmitForm} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">{t('contact.firstName')} <span className="text-red-500">*</span></label>
+                <input
+                  value={form.firstName}
+                  onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+                  placeholder="John"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">{t('contact.lastName')} <span className="text-red-500">*</span></label>
+                <input
+                  value={form.lastName}
+                  onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+                  placeholder="Doe"
+                  required
+                />
+              </div>
+            </div>
 
-              {/* Custom Play Button Overlay (shown when not unlocked) */}
-              {!isUnlocked && !showForm && (
-                <div
-                  className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer hover:bg-black/40 transition-colors"
-                  onClick={handlePlayClick}
-                >
-                  <div className="w-20 h-20 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform">
-                    <Play className="w-10 h-10 text-brand-600 fill-current ml-1" />
-                  </div>
-                </div>
-              )}
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">{t('contact.email')} <span className="text-red-500">*</span></label>
+              <input
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+                placeholder="john@company.com"
+                required
+              />
+            </div>
 
-              {/* Form Overlay */}
-              {showForm && !isUnlocked && (
-                <div className="absolute inset-0 bg-white overflow-y-auto">
-                  <div className="min-h-full flex items-center justify-center p-4">
-                    <div className="max-w-xl w-full">
-                      <div className="text-center mb-4">
-                        <h3 className="text-xl font-bold text-brand-600 mb-1">Unlock the demo: Submit to watch!</h3>
-                        <p className="text-sm text-slate-600">Just fill out this quick form for instant access to our demo.</p>
-                      </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">{t('contact.company')} <span className="text-red-500">*</span></label>
+              <input
+                value={form.company}
+                onChange={(e) => setForm({ ...form, company: e.target.value })}
+                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+                placeholder="Company Name"
+                required
+              />
+            </div>
 
-                      <form onSubmit={handleSubmitForm} className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                          <label className="block text-xs font-medium text-slate-700 mb-1">First Name *</label>
-                          <input
-                            value={form.firstName}
-                            onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                            className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-slate-700 mb-1">Last Name *</label>
-                          <input
-                            value={form.lastName}
-                            onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                            className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                            required
-                          />
-                        </div>
-                        <div className="md:col-span-2">
-                          <label className="block text-xs font-medium text-slate-700 mb-1">Company *</label>
-                          <input
-                            value={form.company}
-                            onChange={(e) => setForm({ ...form, company: e.target.value })}
-                            className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-slate-700 mb-1">Country *</label>
-                          <select
-                            value={form.country}
-                            onChange={(e) => setForm({ ...form, country: e.target.value })}
-                            className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                            required
-                          >
-                            <option value="">Select</option>
-                            <option>Singapore</option>
-                            <option>Malaysia</option>
-                            <option>Indonesia</option>
-                            <option>Myanmar</option>
-                            <option>Vietnam</option>
-                            <option>Kazakhstan</option>
-                            <option>Brunei</option>
-                            <option>Cambodia</option>
-                            <option>Laos</option>
-                            <option>Philippines</option>
-                            <option>Thailand</option>
-                            <option>India</option>
-                            <option>China</option>
-                            <option>Other</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-slate-700 mb-1">Contact Number *</label>
-                          <input
-                            value={form.phone}
-                            onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                            className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                            required
-                          />
-                        </div>
-                        <div className="md:col-span-2">
-                          <label className="block text-xs font-medium text-slate-700 mb-1">Email *</label>
-                          <input
-                            type="email"
-                            value={form.email}
-                            onChange={(e) => setForm({ ...form, email: e.target.value })}
-                            className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                            required
-                          />
-                        </div>
-                        <div className="md:col-span-2 flex items-center gap-2">
-                          <input
-                            id="privacy-how"
-                            type="checkbox"
-                            checked={form.accepted}
-                            onChange={(e) => setForm({ ...form, accepted: e.target.checked })}
-                            className="w-4 h-4 border-slate-300 rounded"
-                          />
-                          <label htmlFor="privacy-how" className="text-sm text-slate-700">I agree to the privacy policy *</label>
-                        </div>
-                        <div className="md:col-span-2">
-                          <button
-                            type="submit"
-                            disabled={!form.accepted}
-                            className="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            Submit to Watch <Play className="w-5 h-5 fill-current" />
-                          </button>
-                        </div>
-                      </form>
+            <button
+              type="submit"
+              className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brand-500/20 hover:shadow-brand-500/40 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 group"
+            >
+              <span>{t('howItWorks.submitToWatch')}</span>
+              <Play className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+            </button>
+
+            <p className="text-xs text-center text-slate-400 mt-4">
+              {t('contact.priorityGiven')}
+            </p>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const HowItWorks: React.FC = () => {
+  const { t } = useLanguage();
+  const [isVideoUnlocked, setIsVideoUnlocked] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleUnlock = () => {
+    setIsVideoUnlocked(true);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  return (
+    <section id="howitworks" className="relative py-24 bg-slate-950 overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            {t('howItWorks.title')}
+          </h2>
+          <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            {t('howItWorks.subtitle')}
+          </p>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto">
+          {/* Video Container */}
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 group">
+
+            {/* Video Element */}
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              poster="/video-poster.jpg"
+              controls={isVideoUnlocked}
+            >
+              <source src="/video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Overlay Controls (when locked) */}
+            {!isVideoUnlocked && (
+              <>
+                {!isFormOpen ? (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition-colors cursor-pointer"
+                    onClick={() => setIsFormOpen(true)}
+                  >
+                    <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 shadow-xl group-hover:scale-110 transition-transform duration-300 hover:bg-brand-600 hover:border-brand-500">
+                      <Play className="w-8 h-8 text-white fill-current ml-1" />
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
+                ) : (
+                  <LinkContactForm
+                    onClose={() => setIsFormOpen(false)}
+                    onSubmitSuccess={handleUnlock}
+                  />
+                )}
+              </>
+            )}
           </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute -top-10 -left-10 w-24 h-24 bg-brand-500/20 rounded-full blur-2xl -z-10"></div>
+          <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl -z-10"></div>
         </div>
       </div>
     </section>

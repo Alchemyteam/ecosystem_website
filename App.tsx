@@ -1,4 +1,5 @@
 import React from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Module from './components/module';
@@ -17,25 +18,27 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
-      <Header />
-      <main>
-        <Hero />
-        <Module />
-        <Story />
-        <Roadmap />
-        <Success />
-        <TechStack />
-        <Sector />
-        <Investor />
-        <Funding />
-        <HowItWorks />
-        <FAQ />
-        <Glossary />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-white font-sans text-slate-900">
+        <Header />
+        <main>
+          <Hero />
+          <Module />
+          <Story />
+          <Roadmap />
+          <Success />
+          <TechStack />
+          <Sector />
+          <Investor />
+          <Funding />
+          <HowItWorks />
+          <FAQ />
+          <Glossary />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 };
 

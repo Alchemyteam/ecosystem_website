@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative pt-20 pb-12 lg:pt-28 lg:pb-16 overflow-hidden">
       {/* Background Elements */}
@@ -15,7 +18,7 @@ const Hero: React.FC = () => {
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-100 text-xs font-semibold tracking-wide uppercase mb-6">
               <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-              Ecosystem Platform
+              {t('hero.badge')}
             </div>
 
             {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
@@ -24,8 +27,8 @@ const Hero: React.FC = () => {
             </h1> */}
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
-              <span className="text-cyan-500">AURA</span> reads the industrial world. <br className="hidden lg:block" />
-              <span className="text-purple-600">VECTOR</span> enforces its rules.
+              <span className="text-cyan-500">{t('hero.headline1')}</span>{t('hero.headline2')} <br className="hidden lg:block" />
+              <span className="text-purple-600">{t('hero.headline3')}</span>{t('hero.headline4')}
             </h1>
 
             {/* <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
@@ -34,7 +37,7 @@ const Hero: React.FC = () => {
             </p> */}
 
             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              The future of industrial procurement begins here.
+              {t('hero.description')}
             </p>
 
             <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto lg:mx-0">
@@ -42,25 +45,25 @@ const Hero: React.FC = () => {
                 href="#contact"
                 className="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-lg transition-all shadow-xl shadow-brand-500/30 flex items-center justify-center gap-2"
               >
-                Join Ecosystem <ArrowRight className="w-5 h-5" />
+                {t('hero.joinEcosystem')} <ArrowRight className="w-5 h-5" />
               </a>
               <a
                 href="#modules"
                 className="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
               >
-                Explore Module
+                {t('hero.exploreModule')}
               </a>
               <a
                 href="#how"
                 className="px-8 py-4 bg-slate-700 hover:bg-slate-800 text-white rounded-xl font-semibold text-lg transition-all shadow-lg flex items-center justify-center gap-2"
               >
-                See How It Works
+                {t('hero.seeHowItWorks')}
               </a>
               <a
                 href="#contact"
                 className="px-8 py-4 bg-gradient-to-r from-brand-500 to-purple-600 hover:from-brand-600 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition-all shadow-lg flex items-center justify-center"
               >
-                Try Demo
+                {t('hero.tryDemo')}
               </a>
             </div>
           </div>
@@ -73,7 +76,7 @@ const Hero: React.FC = () => {
                 <div className="w-3 h-3 rounded-full bg-red-400"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                 <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                <div className="ml-auto px-3 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-500">X Dashboard</div>
+                <div className="ml-auto px-3 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-500">{t('hero.dashboard')}</div>
               </div>
 
               {/* Mock Grid */}
@@ -83,8 +86,8 @@ const Hero: React.FC = () => {
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-slate-800">AURA</div>
-                    <div className="text-xs text-slate-500">finds the correct item.</div>
+                    <div className="text-2xl font-bold text-slate-800">{t('hero.aura')}</div>
+                    <div className="text-xs text-slate-500">{t('hero.auraDesc')}</div>
                   </div>
                 </div>
                 <div className="bg-blue-50/50 rounded-xl p-4 border border-blue-100 flex flex-col justify-between">
@@ -92,14 +95,14 @@ const Hero: React.FC = () => {
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-slate-800">VECTOR</div>
-                    <div className="text-xs text-slate-500">guarantees flawless execution</div>
+                    <div className="text-2xl font-bold text-slate-800">{t('hero.vector')}</div>
+                    <div className="text-xs text-slate-500">{t('hero.vectorDesc')}</div>
                   </div>
                 </div>
                 <div className="col-span-2 bg-white rounded-xl border border-slate-100 shadow-sm p-4">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-sm font-semibold text-slate-700">Speed of Buyer Onboard</div>
-                    <div className="text-xs text-brand-600 bg-brand-50 px-2 py-1 rounded">Live Updates</div>
+                    <div className="text-sm font-semibold text-slate-700">{t('hero.speedOfBuyerOnboard')}</div>
+                    <div className="text-xs text-brand-600 bg-brand-50 px-2 py-1 rounded">{t('hero.liveUpdates')}</div>
                   </div>
                   <div className="space-y-2">
                     <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
@@ -118,7 +121,7 @@ const Hero: React.FC = () => {
               {/* Decorative floating elements */}
               <div className="absolute -right-4 top-20 bg-white p-3 rounded-lg shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce duration-[3000ms]">
                 <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-xs font-medium text-slate-600">PE Certified</span>
+                <span className="text-xs font-medium text-slate-600">{t('hero.peCertified')}</span>
               </div>
             </div>
           </div>
@@ -130,19 +133,19 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap justify-center lg:justify-between items-center gap-x-8 gap-y-4 text-sm text-slate-500">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>Zero disputes in 6 months</span>
+              <span>{t('hero.zeroDisputes')}</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>Scalable Credit Rail</span>
+              <span>{t('hero.scalableCreditRail')}</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>100% Demand Driven Merchandise</span>
+              <span>{t('hero.demandDrivenMerchandise')}</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span>GTM pipeline live Day 1</span>
+              <span>{t('hero.gtmPipeline')}</span>
             </div>
           </div>
         </div>
